@@ -1,24 +1,36 @@
 services:
+  # --- Frontend (Nginx + Ionic) ---
+  frontend:
+    image: diegomez27/save-frontend:1.0.0
+    restart: always
+    ports:
+      - "80:80" # El usuario entra por aquí (http://localhost)
+    depends_on:
+      - backend
+    networks:
+      - save-network
+
+  # --- Backend (NestJS) ---
   backend:
-    # imagen en Docker Hub
-    image: diegomez27/save-backend-v2:2.0.0 
+    image: diegomez27/save-backend-v2
     restart: always
     ports:
       - "${PORT:-3001}:3001"
     environment:
       - DB_HOST=savedb
       - DB_PORT=5432
-      - DB_USERNAME=${DB_USERNAME:-postgres}
+      - DB_USERNAME=${DB_USERNAME}
       - DB_PASSWORD=${DB_PASSWORD}
-      - DB_DATABASE=${DB_DATABASE:-SaveDB}
-      - JWT_SECRET=${JWT_SECRET:}
-      - NODE_ENV=development # cambiar a 'production' cuando tenga migraciones
+      - DB_DATABASE=${DB_DATABASE}
+      - JWT_SECRET=${JWT_SECRET}
+      - NODE_ENV=development
     depends_on:
       db:
         condition: service_healthy
     networks:
       - save-network
 
+  # --- Base de Datos (PostgreSQL) ---
   db:
     image: postgres:17.2
     restart: always
@@ -26,9 +38,9 @@ services:
     ports:
       - "${DB_PORT:-5434}:5432"
     environment:
-      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_DATABASE:-SaveDB}
+      POSTGRES_DB: ${DB_DATABASE}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
