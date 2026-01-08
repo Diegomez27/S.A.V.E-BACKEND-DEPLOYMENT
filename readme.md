@@ -73,6 +73,7 @@ Este despliegue utiliza los siguientes servicios:
 | Servicio | Imagen Docker | Descripción |
 |----------|---------------|-------------|
 | backend  | diegomez27/save-backend:latest | API NestJS compilada y optimizada. |
+| frontend  | diegomez27/diegomez27/save-frontend:1.0.0 | App Ionic-Angular (web) compilada y optimizada. |
 | db       | postgres:17.2 | Base de datos PostgreSQL. |
 
 **bd:** Los datos de la base de datos se persisten en el volumen local `postgres_data`.
