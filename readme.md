@@ -1,4 +1,4 @@
-# S.A.V.E. Backend - Deployment
+# S.A.V.E. Deployment
 
 Configuración de despliegue automatizado para el sistema **S.A.V.E.** (Sistema de Acceso y Verificación Electrónica).
 
@@ -32,9 +32,9 @@ NODE_ENV=production
 
 # Base de Datos (Se creará automáticamente)
 DB_HOST=savedb
-DB_PORT=5434           # Puerto externo para admin (ej. DBeaver)
+DB_PORT=5434           # Puerto externo para tableplus
 DB_USERNAME=postgres
-DB_PASSWORD=TU_PASSWORD_SEGURO_AQUI
+DB_PASSWORD=TU_PASSWORD
 DB_DATABASE=SaveDB
 
 # Seguridad
@@ -52,10 +52,11 @@ docker-compose up -d
 ```
 
 El backend estará funcionando en http://localhost:3001.
+El frontend estará en el http://localhost:80
 
 ## 🔄 Actualización
 
-Para actualizar el backend a la última versión disponible sin perder datos:
+Para actualizar el proyecto a la última versión disponible:
 
 ```bash
 # 1. Bajar la última versión de la imagen
@@ -74,4 +75,4 @@ Este despliegue utiliza los siguientes servicios:
 | backend  | diegomez27/save-backend:latest | API NestJS compilada y optimizada. |
 | db       | postgres:17.2 | Base de datos PostgreSQL. |
 
-**Nota:** Los datos de la base de datos se persisten en el volumen local `postgres_data`.
+**bd:** Los datos de la base de datos se persisten en el volumen local `postgres_data`.
