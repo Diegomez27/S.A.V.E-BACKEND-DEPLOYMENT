@@ -77,3 +77,7 @@ Este despliegue utiliza los siguientes servicios:
 | db       | postgres:17.2 | Base de datos PostgreSQL. |
 
 **bd:** Los datos de la base de datos se persisten en el volumen local `postgres_data`.
+
+**Usuario:** admin
+**Contraseña:** admin123
+

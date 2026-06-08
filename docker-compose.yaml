@@ -4,7 +4,7 @@ services:
     image: diegomez27/save-frontend:1.0.0
     restart: always
     ports:
-      - "80:80" # El usuario entra por aquí (http://localhost)
+      - "80:80"
     depends_on:
       - backend
     networks:
